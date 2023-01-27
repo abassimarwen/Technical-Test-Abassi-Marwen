@@ -7,7 +7,7 @@ import { Component, OnInit, ViewChild,Input } from '@angular/core';
   styleUrls: ['./data-display.component.css']
 })
 export class DataDisplayComponent implements OnInit {
-  displayedColumns: string[] =['id', 'mission_name'];
+  displayedColumns: string[] =['id', 'mission_name','launch_date_utc'];
   displayedColumns1: string[] =['id','name','company'];
   displayedColumns2: string[] =['id','name','description'];
   
