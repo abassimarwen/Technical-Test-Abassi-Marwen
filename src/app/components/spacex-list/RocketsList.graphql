@@ -1,0 +1,8 @@
+query rocketsList($limit: Int!) {
+  rockets(limit: $limit) {
+   
+    id
+    name
+    company
+  }
+}

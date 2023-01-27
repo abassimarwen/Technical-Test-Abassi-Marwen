@@ -1,0 +1,8 @@
+query missionsList($limit: Int!) {
+  missions(limit: $limit) {
+   
+    id
+    name
+    description
+  }
+}

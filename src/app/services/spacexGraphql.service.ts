@@ -1320,6 +1320,20 @@ export type Uuid_Comparison_Exp = {
   _nin?: InputMaybe<Array<Scalars['uuid']>>;
 };
 
+export type MissionsListQueryVariables = Exact<{
+  limit: Scalars['Int'];
+}>;
+
+
+export type MissionsListQuery = { __typename?: 'Query', missions?: Array<{ __typename?: 'Mission', id?: string | null, name?: string | null, description?: string | null } | null> | null };
+
+export type RocketsListQueryVariables = Exact<{
+  limit: Scalars['Int'];
+}>;
+
+
+export type RocketsListQuery = { __typename?: 'Query', rockets?: Array<{ __typename?: 'Rocket', id?: string | null, name?: string | null, company?: string | null } | null> | null };
+
 export type PastLaunchesListQueryVariables = Exact<{
   limit: Scalars['Int'];
 }>;
@@ -1327,6 +1341,46 @@ export type PastLaunchesListQueryVariables = Exact<{
 
 export type PastLaunchesListQuery = { __typename?: 'Query', launchesPast?: Array<{ __typename?: 'Launch', id?: string | null, mission_name?: string | null, launch_date_utc?: any | null, links?: { __typename?: 'LaunchLinks', flickr_images?: Array<string | null> | null, mission_patch_small?: string | null } | null, rocket?: { __typename?: 'LaunchRocket', rocket_name?: string | null } | null } | null> | null };
 
+export const MissionsListDocument = gql`
+    query missionsList($limit: Int!) {
+  missions(limit: $limit) {
+    id
+    name
+    description
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class MissionsListGQL extends Apollo.Query<MissionsListQuery, MissionsListQueryVariables> {
+    override document = MissionsListDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const RocketsListDocument = gql`
+    query rocketsList($limit: Int!) {
+  rockets(limit: $limit) {
+    id
+    name
+    company
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class RocketsListGQL extends Apollo.Query<RocketsListQuery, RocketsListQueryVariables> {
+    override document = RocketsListDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const PastLaunchesListDocument = gql`
     query pastLaunchesList($limit: Int!) {
   launchesPast(limit: $limit) {

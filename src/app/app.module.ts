@@ -13,6 +13,7 @@ import { DataDisplayComponent } from './components/data-display/data-display.com
 import { SpacexListComponent } from './components/spacex-list/spacex-list.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatSortModule,
     MatPaginatorModule,
     MatFormFieldModule,
-    MatSelectModule 
+    MatSelectModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
