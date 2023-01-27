@@ -1,3 +1,5 @@
+# API ISSUE
+I've faced some issues with the API I was provided with. So I changed the url to another url that returns the same data (https://api.spacex.land/graphql/ -> https://spacex-production.up.railway.app/graphql ) .
 # TechnicalTest
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.10.
