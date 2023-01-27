@@ -1,0 +1,7 @@
+<mat-form-field appearance="fill">
+    <mat-label>Querie Name</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let querie of queries" [value]="querie">{{querie}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <app-data-display></app-data-display>
