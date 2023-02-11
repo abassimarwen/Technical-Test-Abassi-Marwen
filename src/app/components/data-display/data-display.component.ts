@@ -14,6 +14,7 @@ export class DataDisplayComponent implements OnInit {
  
   @Input() dataSource =  [];
   @Input() querie !:string ;
+  @Input() re!:any;
 
   
 

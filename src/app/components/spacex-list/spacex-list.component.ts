@@ -10,6 +10,7 @@ import { PastLaunchesListGQL } from 'src/app/services/spacexGraphql.service';
   styleUrls: ['./spacex-list.component.css']
 })
 export class SpacexListComponent implements OnInit {
+  re:any | undefined
   queries: string[] = [
     'Launch Data' ,
     'Rocket Data' ,
@@ -22,14 +23,52 @@ export class SpacexListComponent implements OnInit {
 
   ngOnInit(): void {
     this.onSelected(this.queries[0]);
-   
+    this.apollo.watchQuery({
+      query: gql`
+      query IntrospectionQuery {
+        __schema {
+    queryType { name }
+    mutationType { name }
+    subscriptionType { name }
+    types {
+      name
+      kind
+      description
+      fields {
+        name
+        type {
+          name
+          kind
+        }
+        description
+      }
+    }
+    directives {
+      name
+      description
+      locations
+      args {
+        name
+        type {
+          name
+        }
+        description
+      }
+    }
+  }
+      }
+      `
+    }).valueChanges.subscribe(result => {
+     this.re = result;
+      console.log(result);
+    });
 
   }
   onSelected(value:string){
-    console.log(value);
+  //  console.log(value);
     this.selectedQuerie = value;
     if(value === 'Launch Data'){
-      console.log('in launch block ')
+     // console.log('in launch block ')
     this.apollo.watchQuery<any>(
       {
       query: gql`
@@ -49,13 +88,13 @@ export class SpacexListComponent implements OnInit {
       map(result => result.data.launches)
     ).subscribe( launches => {
       this.dataSource = launches
-      console.log(launches)
+     // console.log(launches)
       
     });
     
   }
   else if (value === 'Rocket Data'){
-    console.log('in rocket block ')
+  //  console.log('in rocket block ')
     this.apollo.watchQuery<any>(
       {
       query: gql`
@@ -73,7 +112,7 @@ export class SpacexListComponent implements OnInit {
       map(result => result.data.rockets)
     ).subscribe( rockets => {
       this.dataSource = rockets
-      console.log(rockets)
+     // console.log(rockets)
       
     });
   }
@@ -95,7 +134,7 @@ export class SpacexListComponent implements OnInit {
       map(result => result.data.missions)
     ).subscribe( missions => {
       this.dataSource = missions
-      console.log(missions)
+     // console.log(missions)
       
     });
   }
